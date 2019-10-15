@@ -2,9 +2,9 @@
 
 ROOT_DIR="$(cd "$(dirname $0)" && pwd)"/..
 
-DOMAIN=$1
+SUBDOMAIN=$1
 
-if [ -z "$DOMAIN" ]
+if [ -z "$SUBDOMAIN" ]
 then
     echo "用法 $0 域名"
     exit
@@ -23,4 +23,4 @@ case $HARDWARE in
         echo "未识别的硬件架构"
 esac
 
-DOMAIN=$DOMAIN $ROOT_DIR/bin/hardware.d/$BIN_NAME -c $ROOT_DIR/config/frpc.ini
+SUBDOMAIN=$SUBDOMAIN $ROOT_DIR/bin/hardware.d/$BIN_NAME -c $ROOT_DIR/config/frpc.ini
