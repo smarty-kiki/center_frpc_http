@@ -1,0 +1,26 @@
+#!/bin/bash
+
+ROOT_DIR="$(cd "$(dirname $0)" && pwd)"/..
+
+DOMAIN=$1
+
+if [ -z "$DOMAIN" ]
+then
+    echo "用法 $0 域名"
+    exit
+fi
+
+HARDWARE=`uname -m`
+
+case $HARDWARE in
+    x86_64)
+        BIN_NAME=frpc_386
+        ;;
+    armv7l)
+        BIN_NAME=frpc_arm
+        ;;
+    *)
+        echo "未识别的硬件架构"
+esac
+
+DOMAIN=$DOMAIN $ROOT_DIR/bin/hardware.d/$BIN_NAME -c $ROOT_DIR/config/frpc.ini
